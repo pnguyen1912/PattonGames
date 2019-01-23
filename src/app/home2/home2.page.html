@@ -1,0 +1,59 @@
+<ion-content>
+  <video id='video' src="assets/intro.MOV" autoplay height="820px"></video>
+
+  <div padding id='char' style="display:none">
+    <h1 style="text-align:center">Pick your character</h1>
+    <br><br><br>
+    <div style="display:inline-block;text-align: center">
+      <img (click)='pick1()' height="200px" src="assets/game3/Ben.png" alt="">
+      <ion-card>
+        <h1>B-Jammin</h1>
+        <p>"Every one is</p>
+        <p>a real coder"</p>
+        <p>Super: Change</p>
+        <p>rating to 9</p>
+      </ion-card>
+    </div>
+
+    <div style="display:inline-block; float: right; text-align: center">
+      <img (click)='pick2()' height="200px" src="assets/game3/Will.png" alt="">
+      <ion-card>
+        <h1>WilD-</h1>
+        <p>"Believe in</p>
+        <p>your self"</p>
+        <p>Super: User</p>
+        <p>power twice</p>
+      </ion-card>
+    </div>
+
+
+    <div style="text-align:center;">
+      <ion-button style="color:black" (click)='menu()'>Back to Menu</ion-button>
+    </div>
+  </div>
+
+  <div style="display:none" id='game'>
+    <div>
+      <div id='cpucard'></div> <img style=" width : 35%" id='cpu' src="assets/game3/empty.png" alt="">
+      <!-- <h1>{{this.cpuscore}}</h1> -->
+      <h1 id='cputalk' style="float:right;padding-right:10px">CPU Score: {{this.cpuscore}}</h1>
+    </div>
+
+    <div id='deck'>
+      <div id='current' style="display:none">
+        <img id='cpucard1' style="width:25%" src="assets/photos/back.png" alt="">
+        <img id='usercard1' style="width: 25%;float:right" src="assets/photos/back.png" alt=""></div>
+    </div>
+
+    <div style="text-align:right"> <img style="width : 35%" id='user' src="assets/game3/empty.png" alt="">
+      <h1 style="float:left; padding-left: 10px">Your Score: {{this.userscore}}</h1>
+      <div id='usercard'></div>
+    </div>
+    <div style="text-align:center;">
+      <ion-button style="color:black" (clicsk)='menu()'>Back to Menu</ion-button>
+    </div>
+  </div>
+
+
+
+</ion-content>
