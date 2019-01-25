@@ -44,13 +44,13 @@ export class Home2Page implements OnInit {
     'touly': 'Next hand is a draw',
     'cesar': 'No power',
     'kazi': 'Cancel all boost',
-    'channel': 'If you lost previous hand, +8 rating',
+    'channel': 'Next hand + 6',
     'marquise': '-5 next hand',
-    'DJ': 'If you win previous hand, -3',
+    'DJ': 'Next hand -3',
     'maday': '+7 next hand',
-    'james': 'Copy opponent last boost',
-    'manny': 'Cancel opponent boost',
-    'daniel': '+1 all cards',
+    'james': 'x2 Next hand',
+    'manny': 'No power',
+    'daniel': '+1 next hand',
     'khalil': 'Add half card rating',
     'tamar': 'Randomly +/- 3 next hand',
     'jordan': '-2 next hand',
@@ -70,10 +70,66 @@ export class Home2Page implements OnInit {
   userscore = 0;
 
 currentcpu="";
+previouscpu ='';
+previoususer= '';
+winpreivoushand = false;
+affect(card){
+
+}
 
 compare(x,y){
   let temp = this.icstars[x]
   let temp1 = this.icstars[y]
+  // 'patton': 'x3 the next card play',
+  // 'shanta': 'x3 the next card play',
+  // 'touly': 'Next hand is a draw',
+  // 'cesar': 'No power',
+  // 'kazi': 'Cancel all boost',
+  // 'channel': 'Next hand + 6',
+  // 'marquise': '-5 next hand',
+  // 'DJ': 'Next hand -3',
+  // 'maday': '+7 next hand',
+  // 'james': 'x2 Next hand',
+  // 'manny': 'No power',
+  // 'daniel': '+1 next hand',
+  // 'khalil': 'Add half card rating',
+  // 'tamar': 'Randomly +/- 3 next hand',
+  // 'jordan': '-2 next hand',
+  // 'alan': 'If not boosted, +5', 
+
+  if (this.previouscpu == 'patton'){temp = temp * 3}
+  else if (this.previouscpu == 'shanta'){temp = temp * 3}
+  else if (this.previouscpu == 'touly'){temp = 0;temp1 =0}
+  else if (this.previouscpu == 'cesar'){temp = temp}
+  else if (this.previouscpu == 'kazi'){temp = temp}
+  else if (this.previouscpu == 'channel'){temp = temp +6}
+  else if (this.previouscpu == 'marquise'){temp = temp -5}
+  else if (this.previouscpu == 'DJ'){temp = temp - 3}
+  else if (this.previouscpu == 'maday'){temp = temp +7}
+  else if (this.previouscpu == 'james'){temp = temp * 2}
+  else if (this.previouscpu == 'manny'){temp = temp}
+  else if (this.previouscpu == 'daniel'){temp = temp +1}
+  else if (this.previouscpu == 'khalil'){temp = temp + temp/2}
+  else if (this.previouscpu == 'tamar'){temp = temp + 3}
+  else if (this.previouscpu == 'jordan'){temp = temp - 2}
+  else if (this.previouscpu == 'alan'){temp = temp + 5}
+  if (this.previoususer == 'patton'){temp1 = temp1 * 3}
+  else if (this.previoususer == 'shanta'){temp1 = temp1 * 3}
+  else if (this.previoususer == 'touly'){temp1 = 0; temp=0}
+  else if (this.previoususer == 'cesar'){temp1 = temp1}
+  else if (this.previoususer == 'kazi'){temp1 = temp1}
+  else if (this.previoususer == 'channel'){temp1 = temp1 +6}
+  else if (this.previoususer == 'marquise'){temp1 = temp1 -5}
+  else if (this.previoususer == 'DJ'){temp1 = temp1 - 3}
+  else if (this.previoususer == 'maday'){temp1 = temp1 +7}
+  else if (this.previoususer == 'james'){temp1 = temp1 * 2}
+  else if (this.previoususer == 'manny'){temp1 = temp1}
+  else if (this.previoususer == 'daniel'){temp1 = temp1 +1}
+  else if (this.previoususer == 'khalil'){temp1 = temp1 + temp1/2}
+  else if (this.previoususer == 'tamar'){temp1 = temp1 + 3}
+  else if (this.previoususer == 'jordan'){temp1 = temp1 - 2}
+  else if (this.previoususer == 'alan'){temp1 = temp1 + 5}
+  
   // console.log(temp)
   if (temp == temp1 ){
     console.log('tie')
@@ -82,6 +138,9 @@ compare(x,y){
   } else if (temp1 > temp){
     this.userscore++;
   }
+this.previouscpu = x;
+this.previoususer = y;
+console.log(x,y)
 }
 
 
@@ -164,11 +223,92 @@ compare(x,y){
           user.src = `assets/photos/${x}.jpg`
           x1.style.display = 'none';
           this.compare(this.currentcpu,x)
+          if (Object.keys(this.cpu).length==0){
+this.playagain();
+          }
         }
       }]
     })
     await alert.present();
   }
+
+async playagain(){
+  let winner ='';
+  if (this.userscore == this.cpuscore){
+    winner = 'TIE GAME'
+  } else if (this.userscore > this.cpuscore){
+    winner = 'Congratulation, you win'
+  } else {
+    winner = 'You lost.'
+  }
+  const alert = await this.alertCtrl.create({
+    header: `${winner}`,
+    message: `Play again?`,
+    buttons: [{
+      text: 'Cancel'
+    },{
+      text: `Yes`,
+      handler: ()=>{
+      //   this.icstars = {
+      //     'patton': 1,
+      //     'shanta': 1,
+      //     'touly': 5,
+      //     'cesar': 8,
+      //     'kazi': 6,
+      //     'channel': 3,
+      //     'marquise': 10,
+      //     'DJ': 7,
+      //     'maday': 3,
+      //     'james': 2,
+      //     'manny': 5,
+      //     'daniel': 2,
+      //     'khalil': 2,
+      //     'tamar': 5,
+      //     'jordan': 9,
+      //     'alan': 1,
+      //   }
+      //   this.super = {
+      //     'patton': 'x3 the next card play',
+      //     'shanta': 'x3 the next card play',
+      //     'touly': 'Next hand is a draw',
+      //     'cesar': 'No power',
+      //     'kazi': 'Cancel all boost',
+      //     'channel': 'Next hand + 6',
+      //     'marquise': '-5 next hand',
+      //     'DJ': 'Next hand -3',
+      //     'maday': '+7 next hand',
+      //     'james': 'x2 Next hand',
+      //     'manny': 'No power',
+      //     'daniel': '+1 next hand',
+      //     'khalil': 'Add half card rating',
+      //     'tamar': 'Randomly +/- 3 next hand',
+      //     'jordan': '-2 next hand',
+      //     'alan': 'If not boosted, +5',
+      //   }
+      
+      //   this.user = {
+      
+      //   }
+      
+      //   this.cpu = {
+      
+      //   }
+      //   this.sortable = [];
+      
+      //   this.cpuscore = 0;
+      //   this.userscore = 0;
+      
+      // this.currentcpu="";
+      // this.previouscpu ='';
+      // this.previoususer= '';
+      // document.getElementById('current').style.display = 'none'
+      //   this.playgame()
+      location.reload();
+      }
+    }]
+  })
+  await alert.present();
+}
 
 
   cputurn() {
