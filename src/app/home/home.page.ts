@@ -615,4 +615,13 @@ cpurandom4(clicked_id){
 //   }
 // console.log(this.player1) 
 
+newplayer(){
+  document.getElementById('play').style.display = 'none';
+  document.getElementById('instruc').style.display = 'block';
+}
+backhome(){
+  document.getElementById('play').style.display = 'block';
+  document.getElementById('instruc').style.display = 'none';
+}
+
 }

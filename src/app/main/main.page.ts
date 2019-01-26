@@ -21,6 +21,9 @@ export class MainPage implements OnInit {
   game3(){
     this.router.navigate(['/home2'])
   }
+  game4(){
+    this.router.navigate(['/testgame'])
+  }
   ngOnInit() {
   }
 

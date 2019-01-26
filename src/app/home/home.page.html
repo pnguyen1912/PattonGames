@@ -5,8 +5,21 @@
     <img src="assets/solo.png" alt="">
 <img src="assets/spades.jpg" alt=""><br>
  <b> <ion-button style="color: green" (click)='play()'>Play</ion-button><br>
+  <ion-button style="color:green" (click)='newplayer()'>How to play</ion-button><br>
 <ion-button style="color: green" (click)='menu()'>Back to Menu</ion-button></b>
 
+</div>
+<div id='instruc' style="display: none;text-align: center;color: white;background-color: black">
+<h1>How to play</h1>
+<p>* Pick a card that you want to play</p>
+<p>* CPUs will take turn to play their card</p>
+<p>* CPUs' card to have match your suit</p>
+<p>* Whoever have highest card win the round</p>
+<p>* If they can't they have to play Space</p>
+<p>* Space overrule all other suit</p>
+<p>* Highest Space card wins the round</p>
+<p>* At the end, whoever has highest score WIN</p>
+<ion-button style="background-color:green" (click)="backhome()" >Done</ion-button>
 </div>
   <div id='game' style="display:none">
 <div style="text-align:center">

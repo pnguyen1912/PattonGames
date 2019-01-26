@@ -353,14 +353,34 @@ this.currentcpu = temp111;
   }
 
   ngOnInit() {
-    document.querySelector('video').addEventListener('ended', function () {
-      console.log('Video has ended!');
-      document.getElementById('video').style.display = 'none'
-      document.getElementById('char').style.display = 'block'
-    }, false);
+    this.ask();
+    
   }
 
-
+async ask(){
+  const alert = await this.alertCtrl.create({
+    header:"Have you play this game?",
+    buttons: [{
+      text: 'No',
+      handler: ()=> {
+        document.getElementById('video').style.display = 'block';
+        let video = <HTMLVideoElement>document.getElementById('video');
+        video.play();
+        document.querySelector('video').addEventListener('ended', function () {
+          console.log('Video has ended!');
+          document.getElementById('video').style.display = 'none'
+          document.getElementById('char').style.display = 'block'
+        }, false);
+      }
+    },{
+      text: 'Yes',
+      handler: ()=> {
+        document.getElementById('char').style.display ='block'
+      }
+    }]
+  })
+  await alert.present();
+}
 
 
   pick1() {

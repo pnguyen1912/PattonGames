@@ -3,6 +3,8 @@ import {
   OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { async } from 'q';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home1',
@@ -19,7 +21,7 @@ export class Home1Page implements OnInit {
   betshrimp: number = 0;
 rolled:boolean = false;
 winning:boolean = false;
-  constructor(public router:Router) {}
+  constructor(public router:Router, public alertCtrl:AlertController) {}
 
   // info() {
   //   let chicken = document.getElementById('chicken')
@@ -270,7 +272,13 @@ winning:boolean = false;
   } else {console.log('rolling')}
   }
 
-
+async newplayer(){
+  const alert = await this.alertCtrl.create({
+    header:'How to play',
+    message:'Place your bet by clicking on each icon<br>3 dices will be rolled<br>x2 if your bet appeart once<br>x4 if your bet appear twice<br>x6 if your bet appear 3 times'
+  })
+  await alert.present()
+}
 
   ngOnInit() {}
 
