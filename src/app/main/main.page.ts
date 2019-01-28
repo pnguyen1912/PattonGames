@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { CognitoService } from '../cognito.service';
 
 @Component({
   selector: 'app-main',
@@ -8,7 +10,27 @@ import { Router } from '@angular/router';
 })
 export class MainPage implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router,public alertCtrl:AlertController,public cognito:CognitoService) { }
+
+  logout(){
+this.logoutnow();
+  }
+
+async logoutnow(){
+  const alert = await this.alertCtrl.create({
+    header: "Log out?",
+    buttons: [{
+      text: 'Cancel',
+    },{
+      text: 'Yes',
+      handler:()=> {
+        this.router.navigate(['/login']);
+        this.cognito.getAuthenticatedUser().signOut();
+      }
+    }]
+  })
+  await alert.present();
+}
 
   spade(){
     this.router.navigate(['/home'])

@@ -61,7 +61,7 @@ var HomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<ion-content padding>\n  <div style=\"text-align:center\" id='play'>\n    <img src=\"assets/solo.png\" alt=\"\">\n<img src=\"assets/spades.jpg\" alt=\"\"><br>\n <b> <ion-button style=\"color: green\" (click)='play()'>Play</ion-button><br>\n<ion-button style=\"color: green\" (click)='menu()'>Back to Menu</ion-button></b>\n\n</div>\n  <div id='game' style=\"display:none\">\n<div style=\"text-align:center\">\n  <img  id='img3'style=\"width: 30%\" src=\"assets/back.png\" alt=\"\">\n  <p id='score3'>Score: 0</p>\n</div>\n<div>\n  <img id='img2' style=\"width: 30%;display: inline-block\" src=\"assets/back.png\" alt=\"\">\n\n  <img id='img4' style=\"width: 30%;display: inline-block;float: right\" src=\"assets/back.png\" alt=\"\">\n</div>\n<div> <p id='score2'style=\"display: inline-block\">Score: 0</p>\n<p id='score4' style=\"display: inline-block;float: right;\">Score: 0</p></div>\n\n<div style=\"text-align:center\">\n  <img id='img1' style=\"width: 30%\" src=\"assets/blank.png\" alt=\"\">\n</div>\n<div style=\"text-align:center\">\n<p id='score1'>Score: 0</p></div>\n  <div id='player1'></div>\n</div>\n\n\n\n</ion-content>\n"
+module.exports = "\n\n<ion-content padding>\n  <div style=\"text-align:center\" id='play'>\n    <img src=\"assets/solo.png\" alt=\"\">\n<img src=\"assets/spades.jpg\" alt=\"\"><br>\n <b> <ion-button style=\"color: green\" (click)='realplay()'>Play</ion-button><br>\n  <ion-button style=\"color:green\" (click)='newplayer()'>How to play</ion-button><br>\n<ion-button style=\"color: green\" (click)='menu()'>Back to Menu</ion-button></b>\n<b><ion-header>Total win: {{this.api.User.spadescore}}</ion-header></b>\n\n</div>\n<div id='instruc' style=\"display: none;text-align: center;color: white;background-color: black\">\n<h1>How to play</h1>\n<p>* Pick a card that you want to play</p>\n<p>* CPUs will take turn to play their card</p>\n<p>* CPUs' card to have match your suit</p>\n<p>* Whoever have highest card win the round</p>\n<p>* If they can't they have to play Space</p>\n<p>* Space overrule all other suit</p>\n<p>* Highest Space card wins the round</p>\n<p>* At the end, whoever has highest score WIN</p>\n<ion-button style=\"background-color:green\" (click)=\"backhome()\" >Done</ion-button>\n</div>\n  <div id='game' style=\"display:none\">\n    <ion-icon (click)=\"back()\" style=\"position:absolute; top: 2%; float:left;font-size: 300%\" name=\"return-left\"></ion-icon>\n<div style=\"text-align:center\">\n  <img  id='img3'style=\"width: 30%\" src=\"assets/back.png\" alt=\"\">\n  <p id='score3'>Score: 0</p>\n</div>\n<div>\n  <img id='img2' style=\"width: 30%;display: inline-block\" src=\"assets/back.png\" alt=\"\">\n\n  <img id='img4' style=\"width: 30%;float: right\" src=\"assets/back.png\" alt=\"\">\n</div>\n<div> <p id='score2'style=\"display: inline-block\">Score: 0</p>\n<p id='score4' style=\"float: right;\">Score: 0</p></div>\n\n<div style=\"text-align:center\">\n  <img id='img1' style=\"width: 30%\" src=\"assets/blank.png\" alt=\"\">\n</div>\n<div style=\"text-align:center\">\n<p id='score1'>Score: 0</p></div>\n  <div id='player1'></div>\n</div>\n\n\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -89,6 +89,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _restapi_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../restapi.service */ "./src/app/restapi.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -136,10 +137,12 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
 var HomePage = /** @class */ (function () {
-    function HomePage(AlertCtrl, router) {
+    function HomePage(AlertCtrl, router, api) {
         this.AlertCtrl = AlertCtrl;
         this.router = router;
+        this.api = api;
         this.cards = [
             { num: '14', suit: 'H', played: false }, { num: '02', suit: 'H', played: false }, { num: '03', suit: 'H', played: false }, { num: '04', suit: 'H', played: false }, { num: '05', suit: 'H', played: false }, { num: '06', suit: 'H', played: false }, { num: '07', suit: 'H', played: false }, { num: '08', suit: 'H', played: false }, { num: '09', suit: 'H', played: false }, { num: '10', suit: 'H', played: false }, { num: '11', suit: 'H', played: false }, { num: '12', suit: 'H', played: false }, { num: '13', suit: 'H', played: false },
             { num: '14', suit: 'D', played: false }, { num: '02', suit: 'D', played: false }, { num: '03', suit: 'D', played: false }, { num: '04', suit: 'D', played: false }, { num: '05', suit: 'D', played: false }, { num: '06', suit: 'D', played: false }, { num: '07', suit: 'D', played: false }, { num: '08', suit: 'D', played: false }, { num: '09', suit: 'D', played: false }, { num: '10', suit: 'D', played: false }, { num: '11', suit: 'D', played: false }, { num: '12', suit: 'D', played: false }, { num: '13', suit: 'D', played: false },
@@ -231,17 +234,28 @@ var HomePage = /** @class */ (function () {
         this.played2 = false;
         this.played3 = false;
         this.played4 = false;
-        this.turn1 = false;
-        this.turn2 = false;
-        this.turn3 = false;
-        this.turn4 = false;
         this.gamestarted = false;
+        this.trackback = false;
     }
     HomePage.prototype.menu = function () {
+        this.api.postData();
         this.router.navigate(['/main']);
+    };
+    HomePage.prototype.realplay = function () {
+        if (this.trackback == false) {
+            this.play();
+        }
+        else {
+            document.getElementById('play').style.display = 'none';
+            document.getElementById('game').style.display = 'block';
+        }
     };
     HomePage.prototype.play = function () {
         var _this = this;
+        this.trackback = true;
+        // for (let i=0; i<this.player1.length;i++){
+        //   document.getElementById(`${this.player1[i].num}${this.player1[i].suit}`).style.display = 'none'
+        // }
         document.getElementById('play').style.display = 'none';
         document.getElementById('game').style.display = 'block';
         var j, x, i;
@@ -288,6 +302,10 @@ var HomePage = /** @class */ (function () {
         }
         console.log(this.player4);
     };
+    HomePage.prototype.back = function () {
+        document.getElementById('play').style.display = 'block';
+        document.getElementById('game').style.display = 'none';
+    };
     HomePage.prototype.cantplay = function () {
         return __awaiter(this, void 0, void 0, function () {
             var alert;
@@ -322,14 +340,10 @@ var HomePage = /** @class */ (function () {
                                     } },
                                 { text: 'Yes',
                                     handler: function () {
-                                        _this.play();
-                                        _this.round = 1;
                                         // let i=0
-                                        _this.player1 = [];
-                                        _this.player2 = [];
-                                        _this.player3 = [];
-                                        _this.player4 = [];
-                                    },
+                                        _this.reset();
+                                        _this.play();
+                                    }
                                 }]
                         })];
                     case 1:
@@ -359,6 +373,38 @@ var HomePage = /** @class */ (function () {
                 }
             });
         });
+    };
+    HomePage.prototype.reset = function () {
+        this.cards = [
+            { num: '14', suit: 'H', played: false }, { num: '02', suit: 'H', played: false }, { num: '03', suit: 'H', played: false }, { num: '04', suit: 'H', played: false }, { num: '05', suit: 'H', played: false }, { num: '06', suit: 'H', played: false }, { num: '07', suit: 'H', played: false }, { num: '08', suit: 'H', played: false }, { num: '09', suit: 'H', played: false }, { num: '10', suit: 'H', played: false }, { num: '11', suit: 'H', played: false }, { num: '12', suit: 'H', played: false }, { num: '13', suit: 'H', played: false },
+            { num: '14', suit: 'D', played: false }, { num: '02', suit: 'D', played: false }, { num: '03', suit: 'D', played: false }, { num: '04', suit: 'D', played: false }, { num: '05', suit: 'D', played: false }, { num: '06', suit: 'D', played: false }, { num: '07', suit: 'D', played: false }, { num: '08', suit: 'D', played: false }, { num: '09', suit: 'D', played: false }, { num: '10', suit: 'D', played: false }, { num: '11', suit: 'D', played: false }, { num: '12', suit: 'D', played: false }, { num: '13', suit: 'D', played: false },
+            { num: '14', suit: 'S', played: false }, { num: '02', suit: 'S', played: false }, { num: '03', suit: 'S', played: false }, { num: '04', suit: 'S', played: false }, { num: '05', suit: 'S', played: false }, { num: '06', suit: 'S', played: false }, { num: '07', suit: 'S', played: false }, { num: '08', suit: 'S', played: false }, { num: '09', suit: 'S', played: false }, { num: '10', suit: 'S', played: false }, { num: '11', suit: 'S', played: false }, { num: '12', suit: 'S', played: false }, { num: '13', suit: 'S', played: false },
+            { num: '14', suit: 'C', played: false }, { num: '02', suit: 'C', played: false }, { num: '03', suit: 'C', played: false }, { num: '04', suit: 'C', played: false }, { num: '05', suit: 'C', played: false }, { num: '06', suit: 'C', played: false }, { num: '07', suit: 'C', played: false }, { num: '08', suit: 'C', played: false }, { num: '09', suit: 'C', played: false }, { num: '10', suit: 'C', played: false }, { num: '11', suit: 'C', played: false }, { num: '12', suit: 'C', played: false }, { num: '13', suit: 'C', played: false },
+        ];
+        console.log(this.cards);
+        this.currentplay = '';
+        this.turn = true;
+        this.round = 1;
+        this.currentplay2 = '';
+        this.currentplay3 = '';
+        this.currentplay4 = '';
+        this.player1score = 0;
+        this.player2score = 0;
+        this.player3score = 0;
+        this.player4score = 0;
+        document.getElementById('score1').innerHTML = "Score :0";
+        document.getElementById('score2').innerHTML = "Score :0";
+        document.getElementById('score3').innerHTML = "Score :0";
+        document.getElementById('score4').innerHTML = "Score :0";
+        this.played1 = false;
+        this.played2 = false;
+        this.played3 = false;
+        this.played4 = false;
+        this.gamestarted = false;
+        this.player1 = [];
+        this.player2 = [];
+        this.player3 = [];
+        this.player4 = [];
     };
     HomePage.prototype.notturn = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -442,6 +488,7 @@ var HomePage = /** @class */ (function () {
                     if (_this.round == 14) {
                         if (_this.player1score > _this.player2score && _this.player1score > _this.player2score && _this.player1score > _this.player4score) {
                             _this.annwinner('Player 1');
+                            _this.api.User.spadescore++;
                         }
                         if (_this.player2score > _this.player1score && _this.player2score > _this.player3score && _this.player2score > _this.player4score) {
                             _this.annwinner('Player 2');
@@ -451,6 +498,10 @@ var HomePage = /** @class */ (function () {
                         }
                         if (_this.player4score > _this.player1score && _this.player4score > _this.player2score && _this.player4score > _this.player3score) {
                             _this.annwinner('Player 4');
+                        }
+                        if (_this.player1score == _this.player2score || _this.player1score == _this.player3score || _this.player1score == _this.player4score ||
+                            _this.player2score == _this.player3score || _this.player2score == _this.player4score || _this.player3score == _this.player4score) {
+                            _this.annwinner('No One');
                         }
                     }
                 }, 3001);
@@ -799,13 +850,31 @@ var HomePage = /** @class */ (function () {
             }
         }
     };
+    //  let i=0
+    //  let j = 0;
+    //   while (i<=12){
+    //     j = Math.floor(Math.random()*(52-i)) +1;  
+    //     console.log(j)
+    //     this.player1[i] = this.cards[j]
+    //     // this.cards.splice(j,1)
+    //     i++;
+    //   }
+    // console.log(this.player1) 
+    HomePage.prototype.newplayer = function () {
+        document.getElementById('play').style.display = 'none';
+        document.getElementById('instruc').style.display = 'block';
+    };
+    HomePage.prototype.backhome = function () {
+        document.getElementById('play').style.display = 'block';
+        document.getElementById('instruc').style.display = 'none';
+    };
     HomePage = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-home',
             template: __webpack_require__(/*! ./home.page.html */ "./src/app/home/home.page.html"),
             styles: [__webpack_require__(/*! ./home.page.scss */ "./src/app/home/home.page.scss")]
         }),
-        __metadata("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["AlertController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["AlertController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _restapi_service__WEBPACK_IMPORTED_MODULE_3__["RestapiService"]])
     ], HomePage);
     return HomePage;
 }());

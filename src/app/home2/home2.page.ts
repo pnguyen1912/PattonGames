@@ -11,6 +11,7 @@ import {
 import {
   AlertController
 } from '@ionic/angular';
+import { RestapiService } from '../restapi.service';
 
 @Component({
   selector: 'app-home2',
@@ -19,7 +20,7 @@ import {
 })
 export class Home2Page implements OnInit {
   pick: number;
-  constructor(public router: Router, public alertCtrl: AlertController) {}
+  constructor(public router: Router, public alertCtrl: AlertController,public api:RestapiService) {}
   icstars = {
     'patton': 1,
     'shanta': 1,
@@ -238,6 +239,7 @@ async playagain(){
     winner = 'TIE GAME'
   } else if (this.userscore > this.cpuscore){
     winner = 'Congratulation, you win'
+    this.api.User.starswin++;
   } else {
     winner = 'You lost.'
   }
@@ -353,8 +355,10 @@ this.currentcpu = temp111;
   }
 
   ngOnInit() {
+    if(this.api.User.starsvideo ==true){
     this.ask();
-    
+    } else    {     document.getElementById('char').style.display ='block'}
+
   }
 
 async ask(){
@@ -366,22 +370,34 @@ async ask(){
         document.getElementById('video').style.display = 'block';
         let video = <HTMLVideoElement>document.getElementById('video');
         video.play();
-        document.querySelector('video').addEventListener('ended', function () {
+        document.querySelector('video').addEventListener('ended',() =>{
           console.log('Video has ended!');
           document.getElementById('video').style.display = 'none'
-          document.getElementById('char').style.display = 'block'
+          document.getElementById('char').style.display = 'block';
+          this.api.User.starsvideo = false;
         }, false);
       }
     },{
       text: 'Yes',
       handler: ()=> {
-        document.getElementById('char').style.display ='block'
+        document.getElementById('char').style.display ='block';
+        this.api.User.starsvideo = false;
       }
     }]
   })
   await alert.present();
 }
 
+tutor(){
+  document.getElementById('video').style.display = 'block';
+  let video = <HTMLVideoElement>document.getElementById('video');
+        video.play();
+        document.querySelector('video').addEventListener('ended', function () {
+          console.log('Video has ended!');
+          document.getElementById('video').style.display = 'none'
+          document.getElementById('char').style.display = 'block';
+        }, false);
+}
 
   pick1() {
     this.pick = 1;
@@ -398,6 +414,7 @@ async ask(){
   }
 
   menu() {
+    this.api.postData()
     this.router.navigate(['/main'])
   }
 

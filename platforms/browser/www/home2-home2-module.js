@@ -62,7 +62,7 @@ var Home2PageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content>\n  <video id='video' src=\"assets/tamar.MOV\" autoplay height=\"820px\"></video>\n\n  <div padding id='char' style=\"display:none\">\n    <h1 style=\"text-align:center\">Pick your character</h1>\n    <br><br><br>\n    <div style=\"display:inline-block;text-align: center\">\n      <img (click)='pick1()' height=\"200px\" src=\"assets/game3/Ben.png\" alt=\"\">\n      <ion-card>\n        <h1>B-Jammin</h1>\n        <p>\"Every one is</p>\n        <p>a real coder\"</p>\n        <p>Super: Change</p>\n        <p>rating to 9</p>\n      </ion-card>\n    </div>\n\n    <div style=\"display:inline-block; float: right; text-align: center\">\n      <img (click)='pick2()' height=\"200px\" src=\"assets/game3/Will.png\" alt=\"\">\n      <ion-card>\n        <h1>WilD-</h1>\n        <p>\"Believe in</p>\n        <p>your self\"</p>\n        <p>Super: User</p>\n        <p>power twice</p>\n      </ion-card>\n    </div>\n\n\n    <div style=\"text-align:center;\">\n      <ion-button style=\"color:black\" (click)='menu()'>Back to Menu</ion-button>\n    </div>\n  </div>\n\n<div style=\"display:none\" id='game'>\n  <div > \n   <div id='cpucard' ></div> <img style=\" width : 35%\" id='cpu' src=\"assets/game3/empty.png\" alt=\"\">\n   <!-- <h1>{{this.cpuscore}}</h1> -->\n    <h1 id='cputalk' style=\"float:right;padding-right:10px\">CPU Score: {{this.cpuscore}}</h1>\n</div>\n\n  <div id='deck'>\n    <div id='current' style=\"display:none\" >\n<img id='cpucard1' style=\"width:25%\" src=\"assets/photos/back.png\" alt=\"\">\n<img id='usercard1' style=\"width: 25%;float:right\" src=\"assets/photos/back.png\" alt=\"\"></div>\n  </div>\n\n  <div style=\"text-align:right\"> <img style=\"width : 35%\" id='user' src=\"assets/game3/empty.png\" alt=\"\"> \n    <h1 style=\"float:left; padding-left: 10px\">Your Score: {{this.userscore}}</h1>\n  <div id='usercard'></div></div>\n  <div style=\"text-align:center;\">\n      <ion-button style=\"color:black\" (click)='menu()'>Back to Menu</ion-button>\n    </div></div>\n\n\n\n</ion-content>"
+module.exports = "<ion-content>\n  <video style=\"display:none\" id='video' src=\"assets/intro1.MOV\"  height=\"820px\"></video> \n  <!-- autoplay -->\n\n  <div padding id='char' style=\"display:none\">\n    <h1 style=\"text-align:center\">Pick your character</h1>\n    <br><br><br>\n    <div style=\"display:inline-block;text-align: center\">\n      <img (click)='pick1()' height=\"200px\" src=\"assets/game3/Ben.png\" alt=\"\">\n      <ion-card>\n        <h1>B-Jammin</h1>\n        <p>\"Every one is</p>\n        <p>a real coder\"</p>\n        <p>Super: Change</p>\n        <p>rating to 9</p>\n      </ion-card>\n    </div>\n\n    <div style=\"float: right; text-align: center\">\n      <img (click)='pick2()' height=\"200px\" src=\"assets/game3/Will.png\" alt=\"\">\n      <ion-card>\n        <h1>WilD-</h1>\n        <p>\"Believe in</p>\n        <p>your self\"</p>\n        <p>Super: User</p>\n        <p>power twice</p>\n      </ion-card>\n    </div>\n\n\n    <div style=\"text-align:center;\">\n      <ion-button style=\"color:black\" (click)='menu()'>Back to Menu</ion-button><br>\n      <ion-button style=\"color:black\" (click)='tutor()'>How to play</ion-button>\n      <ion-header>Total win: {{this.api.User.starswin}}</ion-header>\n\n    </div>\n  </div>\n\n  <div style=\"display:none\" id='game'>\n    <div>\n      <div id='cpucard'></div> <img style=\" width : 35%\" id='cpu' src=\"assets/game3/empty.png\" alt=\"\">\n      <!-- <h1>{{this.cpuscore}}</h1> -->\n      <h1 id='cputalk' style=\"float:right;padding-right:10px\">CPU Score: {{this.cpuscore}}</h1>\n    </div>\n\n    <div id='deck'>\n      <div id='current' style=\"display:none\">\n        <img id='cpucard1' style=\"width:25%\" src=\"assets/photos/back.png\" alt=\"\">\n        <img id='usercard1' style=\"width: 25%;float:right\" src=\"assets/photos/back.png\" alt=\"\"></div>\n    </div>\n\n    <div style=\"text-align:right\"> <img style=\"width : 35%\" id='user' src=\"assets/game3/empty.png\" alt=\"\">\n      <h1 style=\"float:left; padding-left: 10px\">Your Score: {{this.userscore}}</h1>\n      <div id='usercard'></div>\n    </div>\n    <div style=\"text-align:center;\">\n      <ion-button style=\"color:black\" (click)='menu()'>Back to Menu</ion-button>\n    </div>\n  </div>\n\n\n\n</ion-content>"
 
 /***/ }),
 
@@ -90,6 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _restapi_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../restapi.service */ "./src/app/restapi.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -137,10 +138,12 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
 var Home2Page = /** @class */ (function () {
-    function Home2Page(router, alertCtrl) {
+    function Home2Page(router, alertCtrl, api) {
         this.router = router;
         this.alertCtrl = alertCtrl;
+        this.api = api;
         this.icstars = {
             'patton': 1,
             'shanta': 1,
@@ -154,28 +157,28 @@ var Home2Page = /** @class */ (function () {
             'james': 2,
             'manny': 5,
             'daniel': 2,
-            'khalil': 4,
+            'khalil': 2,
             'tamar': 5,
             'jordan': 9,
             'alan': 1,
         };
         this.super = {
-            'patton': 1,
-            'shanta': 1,
-            'touly': 5,
-            'cesar': 8,
-            'kazi': 6,
-            'channel': 3,
-            'marquise': 10,
-            'DJ': 7,
-            'maday': 3,
-            'james': 2,
-            'manny': 5,
-            'daniel': 2,
-            'khalil': 4,
-            'tamar': 5,
-            'jordan': 9,
-            'alan': 1,
+            'patton': 'x3 the next card play',
+            'shanta': 'x3 the next card play',
+            'touly': 'Next hand is a draw',
+            'cesar': 'No power',
+            'kazi': 'Cancel all boost',
+            'channel': 'Next hand + 6',
+            'marquise': '-5 next hand',
+            'DJ': 'Next hand -3',
+            'maday': '+7 next hand',
+            'james': 'x2 Next hand',
+            'manny': 'No power',
+            'daniel': '+1 next hand',
+            'khalil': 'Add half card rating',
+            'tamar': 'Randomly +/- 3 next hand',
+            'jordan': '-2 next hand',
+            'alan': 'If not boosted, +5',
         };
         this.user = {};
         this.cpu = {};
@@ -183,10 +186,129 @@ var Home2Page = /** @class */ (function () {
         this.cpuscore = 0;
         this.userscore = 0;
         this.currentcpu = "";
+        this.previouscpu = '';
+        this.previoususer = '';
+        this.winpreivoushand = false;
     }
+    Home2Page.prototype.affect = function (card) {
+    };
     Home2Page.prototype.compare = function (x, y) {
         var temp = this.icstars[x];
         var temp1 = this.icstars[y];
+        // 'patton': 'x3 the next card play',
+        // 'shanta': 'x3 the next card play',
+        // 'touly': 'Next hand is a draw',
+        // 'cesar': 'No power',
+        // 'kazi': 'Cancel all boost',
+        // 'channel': 'Next hand + 6',
+        // 'marquise': '-5 next hand',
+        // 'DJ': 'Next hand -3',
+        // 'maday': '+7 next hand',
+        // 'james': 'x2 Next hand',
+        // 'manny': 'No power',
+        // 'daniel': '+1 next hand',
+        // 'khalil': 'Add half card rating',
+        // 'tamar': 'Randomly +/- 3 next hand',
+        // 'jordan': '-2 next hand',
+        // 'alan': 'If not boosted, +5', 
+        if (this.previouscpu == 'patton') {
+            temp = temp * 3;
+        }
+        else if (this.previouscpu == 'shanta') {
+            temp = temp * 3;
+        }
+        else if (this.previouscpu == 'touly') {
+            temp = 0;
+            temp1 = 0;
+        }
+        else if (this.previouscpu == 'cesar') {
+            temp = temp;
+        }
+        else if (this.previouscpu == 'kazi') {
+            temp = temp;
+        }
+        else if (this.previouscpu == 'channel') {
+            temp = temp + 6;
+        }
+        else if (this.previouscpu == 'marquise') {
+            temp = temp - 5;
+        }
+        else if (this.previouscpu == 'DJ') {
+            temp = temp - 3;
+        }
+        else if (this.previouscpu == 'maday') {
+            temp = temp + 7;
+        }
+        else if (this.previouscpu == 'james') {
+            temp = temp * 2;
+        }
+        else if (this.previouscpu == 'manny') {
+            temp = temp;
+        }
+        else if (this.previouscpu == 'daniel') {
+            temp = temp + 1;
+        }
+        else if (this.previouscpu == 'khalil') {
+            temp = temp + temp / 2;
+        }
+        else if (this.previouscpu == 'tamar') {
+            temp = temp + 3;
+        }
+        else if (this.previouscpu == 'jordan') {
+            temp = temp - 2;
+        }
+        else if (this.previouscpu == 'alan') {
+            temp = temp + 5;
+        }
+        if (this.previoususer == 'patton') {
+            temp1 = temp1 * 3;
+        }
+        else if (this.previoususer == 'shanta') {
+            temp1 = temp1 * 3;
+        }
+        else if (this.previoususer == 'touly') {
+            temp1 = 0;
+            temp = 0;
+        }
+        else if (this.previoususer == 'cesar') {
+            temp1 = temp1;
+        }
+        else if (this.previoususer == 'kazi') {
+            temp1 = temp1;
+        }
+        else if (this.previoususer == 'channel') {
+            temp1 = temp1 + 6;
+        }
+        else if (this.previoususer == 'marquise') {
+            temp1 = temp1 - 5;
+        }
+        else if (this.previoususer == 'DJ') {
+            temp1 = temp1 - 3;
+        }
+        else if (this.previoususer == 'maday') {
+            temp1 = temp1 + 7;
+        }
+        else if (this.previoususer == 'james') {
+            temp1 = temp1 * 2;
+        }
+        else if (this.previoususer == 'manny') {
+            temp1 = temp1;
+        }
+        else if (this.previoususer == 'daniel') {
+            temp1 = temp1 + 1;
+        }
+        else if (this.previoususer == 'khalil') {
+            temp1 = temp1 + temp1 / 2;
+        }
+        else if (this.previoususer == 'tamar') {
+            temp1 = temp1 + 3;
+        }
+        else if (this.previoususer == 'jordan') {
+            temp1 = temp1 - 2;
+        }
+        else if (this.previoususer == 'alan') {
+            temp1 = temp1 + 5;
+        }
         // console.log(temp)
         if (temp == temp1) {
             console.log('tie');
@@ -197,6 +319,9 @@ var Home2Page = /** @class */ (function () {
         else if (temp1 > temp) {
             this.userscore++;
         }
+        this.previouscpu = x;
+        this.previoususer = y;
+        console.log(x, y);
     };
     Home2Page.prototype.playgame = function () {
         var _this = this;
@@ -243,7 +368,7 @@ var Home2Page = /** @class */ (function () {
                         console.log(x);
                         return [4 /*yield*/, this.alertCtrl.create({
                                 header: x,
-                                subHeader: this.icstars[x],
+                                subHeader: "Rating: " + this.icstars[x],
                                 message: this.super[x],
                                 buttons: [{
                                         text: "Cancel"
@@ -296,6 +421,96 @@ var Home2Page = /** @class */ (function () {
                                             user.src = "assets/photos/" + x + ".jpg";
                                             x1.style.display = 'none';
                                             _this.compare(_this.currentcpu, x);
+                                            if (Object.keys(_this.cpu).length == 0) {
+                                                _this.playagain();
+                                            }
+                                        }
+                                    }]
+                            })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Home2Page.prototype.playagain = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var winner, alert;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        winner = '';
+                        if (this.userscore == this.cpuscore) {
+                            winner = 'TIE GAME';
+                        }
+                        else if (this.userscore > this.cpuscore) {
+                            winner = 'Congratulation, you win';
+                            this.api.User.starswin++;
+                        }
+                        else {
+                            winner = 'You lost.';
+                        }
+                        return [4 /*yield*/, this.alertCtrl.create({
+                                header: "" + winner,
+                                message: "Play again?",
+                                buttons: [{
+                                        text: 'Cancel'
+                                    }, {
+                                        text: "Yes",
+                                        handler: function () {
+                                            //   this.icstars = {
+                                            //     'patton': 1,
+                                            //     'shanta': 1,
+                                            //     'touly': 5,
+                                            //     'cesar': 8,
+                                            //     'kazi': 6,
+                                            //     'channel': 3,
+                                            //     'marquise': 10,
+                                            //     'DJ': 7,
+                                            //     'maday': 3,
+                                            //     'james': 2,
+                                            //     'manny': 5,
+                                            //     'daniel': 2,
+                                            //     'khalil': 2,
+                                            //     'tamar': 5,
+                                            //     'jordan': 9,
+                                            //     'alan': 1,
+                                            //   }
+                                            //   this.super = {
+                                            //     'patton': 'x3 the next card play',
+                                            //     'shanta': 'x3 the next card play',
+                                            //     'touly': 'Next hand is a draw',
+                                            //     'cesar': 'No power',
+                                            //     'kazi': 'Cancel all boost',
+                                            //     'channel': 'Next hand + 6',
+                                            //     'marquise': '-5 next hand',
+                                            //     'DJ': 'Next hand -3',
+                                            //     'maday': '+7 next hand',
+                                            //     'james': 'x2 Next hand',
+                                            //     'manny': 'No power',
+                                            //     'daniel': '+1 next hand',
+                                            //     'khalil': 'Add half card rating',
+                                            //     'tamar': 'Randomly +/- 3 next hand',
+                                            //     'jordan': '-2 next hand',
+                                            //     'alan': 'If not boosted, +5',
+                                            //   }
+                                            //   this.user = {
+                                            //   }
+                                            //   this.cpu = {
+                                            //   }
+                                            //   this.sortable = [];
+                                            //   this.cpuscore = 0;
+                                            //   this.userscore = 0;
+                                            // this.currentcpu="";
+                                            // this.previouscpu ='';
+                                            // this.previoususer= '';
+                                            // document.getElementById('current').style.display = 'none'
+                                            //   this.playgame()
+                                            location.reload();
                                         }
                                     }]
                             })];
@@ -346,6 +561,56 @@ var Home2Page = /** @class */ (function () {
         // }
     };
     Home2Page.prototype.ngOnInit = function () {
+        if (this.api.User.starsvideo == true) {
+            this.ask();
+        }
+        else {
+            document.getElementById('char').style.display = 'block';
+        }
+    };
+    Home2Page.prototype.ask = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertCtrl.create({
+                            header: "Have you play this game?",
+                            buttons: [{
+                                    text: 'No',
+                                    handler: function () {
+                                        document.getElementById('video').style.display = 'block';
+                                        var video = document.getElementById('video');
+                                        video.play();
+                                        document.querySelector('video').addEventListener('ended', function () {
+                                            console.log('Video has ended!');
+                                            document.getElementById('video').style.display = 'none';
+                                            document.getElementById('char').style.display = 'block';
+                                            _this.api.User.starsvideo = false;
+                                        }, false);
+                                    }
+                                }, {
+                                    text: 'Yes',
+                                    handler: function () {
+                                        document.getElementById('char').style.display = 'block';
+                                        _this.api.User.starsvideo = false;
+                                    }
+                                }]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Home2Page.prototype.tutor = function () {
+        document.getElementById('video').style.display = 'block';
+        var video = document.getElementById('video');
+        video.play();
         document.querySelector('video').addEventListener('ended', function () {
             console.log('Video has ended!');
             document.getElementById('video').style.display = 'none';
@@ -365,6 +630,7 @@ var Home2Page = /** @class */ (function () {
         // document.getElementById('char').style.display = 'none'
     };
     Home2Page.prototype.menu = function () {
+        this.api.postData();
         this.router.navigate(['/main']);
     };
     Home2Page = __decorate([
@@ -373,7 +639,7 @@ var Home2Page = /** @class */ (function () {
             template: __webpack_require__(/*! ./home2.page.html */ "./src/app/home2/home2.page.html"),
             styles: [__webpack_require__(/*! ./home2.page.scss */ "./src/app/home2/home2.page.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"], _restapi_service__WEBPACK_IMPORTED_MODULE_3__["RestapiService"]])
     ], Home2Page);
     return Home2Page;
 }());

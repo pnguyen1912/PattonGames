@@ -6,6 +6,7 @@ import {
 import * as Matter from 'matter-js';
 import { Router } from '@angular/router';
 import { async } from 'q';
+import { RestapiService } from '../restapi.service';
 @Component({
   selector: 'app-testgame',
   templateUrl: './testgame.page.html',
@@ -16,7 +17,7 @@ export class TestgamePage implements OnInit {
   @ViewChild('mycanvas') canvasEl;
 
 
-  constructor(public router:Router) {}
+  constructor(public router:Router,public api:RestapiService) {}
 
   ngOnInit() {
     this.canvasEl.nativeElement.width = document.body.clientWidth;
@@ -177,6 +178,7 @@ export class TestgamePage implements OnInit {
   }
   
   menu(){
+    // this.api.postData();
     this.router.navigate(['/main'])
   }
 }

@@ -1,0 +1,62 @@
+<ion-content style="text-align:center">
+  <div style="background-color: red;color:white"><b><h1>GamePacks</h1></b></div>
+  <img src="assets/blank.png" height="50%" alt="">
+  <div id="main1" style="display: block">
+    <div>
+      <ion-button (click)="newlogin()">Login</ion-button>
+    </div>
+    <div>
+      <ion-button (click)="newsignup()"> Sign Up </ion-button>
+    </div>
+  </div>
+
+  <div id="login" style="display: none">
+    <div>
+      <ion-list>
+        <ion-item>
+      <ion-input [(ngModel)]="email" type="email" placeholder="Enter Email" required></ion-input>
+      </ion-item>
+      <ion-item>
+      <ion-input [(ngModel)]="password" type="password" placeholder="Enter Password" required></ion-input>
+      <!-- <input type="password" placeholder="Confirm Password" required> -->
+    </ion-item></ion-list></div>
+    <ion-button (click)="login()">Login</ion-button>
+
+
+
+    <div>
+      <ion-button (click)="goBack1()">Back</ion-button>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  <div id="signup" style="display:none">
+
+    <ion-list>
+      <ion-item>
+        <ion-input required type="text" placeholder="Email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input required type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <label for="date">Date of Birth</label>
+        <ion-input slot='end' required type="date" placeholder="Date of Birth" [(ngModel)]="DOB"></ion-input>
+      </ion-item>
+
+    </ion-list>
+    <div>
+      <ion-button (click)="goBack1()">Back</ion-button>
+    </div>
+    <div>
+      <ion-button (click)="register()">Register</ion-button>
+    </div>
+</div>
+
+
+</ion-content>

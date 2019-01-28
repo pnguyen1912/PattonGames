@@ -16,7 +16,7 @@
       </ion-card>
     </div>
 
-    <div style="display:inline-block; float: right; text-align: center">
+    <div style="float: right; text-align: center">
       <img (click)='pick2()' height="200px" src="assets/game3/Will.png" alt="">
       <ion-card>
         <h1>WilD-</h1>
@@ -29,7 +29,10 @@
 
 
     <div style="text-align:center;">
-      <ion-button style="color:black" (click)='menu()'>Back to Menu</ion-button>
+      <ion-button style="color:black" (click)='menu()'>Back to Menu</ion-button><br>
+      <ion-button style="color:black" (click)='tutor()'>How to play</ion-button>
+      <ion-header>Total win: {{this.api.User.starswin}}</ion-header>
+
     </div>
   </div>
 
@@ -51,7 +54,7 @@
       <div id='usercard'></div>
     </div>
     <div style="text-align:center;">
-      <ion-button style="color:black" (clicsk)='menu()'>Back to Menu</ion-button>
+      <ion-button style="color:black" (click)='menu()'>Back to Menu</ion-button>
     </div>
   </div>
 

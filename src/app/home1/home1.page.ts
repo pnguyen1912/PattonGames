@@ -5,6 +5,7 @@ import {
 import { Router } from '@angular/router';
 import { async } from 'q';
 import { AlertController } from '@ionic/angular';
+import { RestapiService } from '../restapi.service';
 
 @Component({
   selector: 'app-home1',
@@ -12,7 +13,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./home1.page.scss'],
 })
 export class Home1Page implements OnInit {
-  coin: number = 20;
+ 
   betfish: number = 0;
   betdeer: number = 0;
   betchicken: number = 0;
@@ -21,7 +22,7 @@ export class Home1Page implements OnInit {
   betshrimp: number = 0;
 rolled:boolean = false;
 winning:boolean = false;
-  constructor(public router:Router, public alertCtrl:AlertController) {}
+  constructor(public router:Router, public alertCtrl:AlertController,public api:RestapiService) {}
 
   // info() {
   //   let chicken = document.getElementById('chicken')
@@ -33,13 +34,14 @@ winning:boolean = false;
   // }
 
   betting() {
-    if (this.coin > 0) {
-      this.coin = this.coin - 1;
+    if (this.api.User.holopoint > 0) {
+      this.api.User.holopoint = this.api.User.holopoint - 1;
     } else {
       console.log('no money')
     }
   }
   menu(){
+    this.api.postData();
     this.router.navigate(['/main'])
     }
   fish1() {
@@ -170,27 +172,27 @@ winning:boolean = false;
       switch (r) {
         case 0:
           result.src = 'assets/icon/fish.png'
-          this.coin = this.coin + this.betfish*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betfish*2;
           break;
         case 1:
           result.src = 'assets/icon/chicken.png';
-          this.coin = this.coin + this.betchicken*2
+          this.api.User.holopoint = this.api.User.holopoint + this.betchicken*2
           break;
         case 2:
           result.src = 'assets/icon/crab.png';
-          this.coin = this.coin + this.betcrab*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betcrab*2;
           break;
         case 3:
           result.src = 'assets/icon/deer.png';
-          this.coin = this.coin + this.betdeer*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betdeer*2;
           break;
         case 4:
           result.src = 'assets/icon/holo.png';
-          this.coin = this.coin + this.betholo*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betholo*2;
           break;
         case 5:
           result.src = 'assets/icon/shrimp.png';
-          this.coin = this.coin + this.betshrimp*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betshrimp*2;
           break;
       }
 
@@ -201,27 +203,27 @@ winning:boolean = false;
       switch (r1) {
         case 0:
           result1.src = 'assets/icon/fish.png'
-          this.coin = this.coin + this.betfish*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betfish*2;
           break;
         case 1:
           result1.src = 'assets/icon/chicken.png';
-          this.coin = this.coin + this.betchicken*2
+          this.api.User.holopoint = this.api.User.holopoint + this.betchicken*2
           break;
         case 2:
           result1.src = 'assets/icon/crab.png';
-          this.coin = this.coin + this.betcrab*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betcrab*2;
           break;
         case 3:
           result1.src = 'assets/icon/deer.png';
-          this.coin = this.coin + this.betdeer*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betdeer*2;
           break;
         case 4:
           result1.src = 'assets/icon/holo.png';
-          this.coin = this.coin + this.betholo*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betholo*2;
           break;
         case 5:
           result1.src = 'assets/icon/shrimp.png';
-          this.coin = this.coin + this.betshrimp*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betshrimp*2;
           break;
       }
 
@@ -232,27 +234,27 @@ winning:boolean = false;
       switch (r2) {
         case 0:
           result2.src = 'assets/icon/fish.png'
-          this.coin = this.coin + this.betfish*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betfish*2;
           break;
         case 1:
           result2.src = 'assets/icon/chicken.png';
-          this.coin = this.coin + this.betchicken*2
+          this.api.User.holopoint = this.api.User.holopoint + this.betchicken*2
           break;
         case 2:
           result2.src = 'assets/icon/crab.png';
-          this.coin = this.coin + this.betcrab*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betcrab*2;
           break;
         case 3:
           result2.src = 'assets/icon/deer.png';
-          this.coin = this.coin + this.betdeer*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betdeer*2;
           break;
         case 4:
           result2.src = 'assets/icon/holo.png';
-          this.coin = this.coin + this.betholo*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betholo*2;
           break;
         case 5:
           result2.src = 'assets/icon/shrimp.png';
-          this.coin = this.coin + this.betshrimp*2;
+          this.api.User.holopoint = this.api.User.holopoint + this.betshrimp*2;
           break;
       }
 
@@ -279,6 +281,31 @@ async newplayer(){
   })
   await alert.present()
 }
+
+tutor(){
+  document.getElementById('video').style.display = 'block';
+  document.getElementById('roll').style.display = 'none';
+  document.getElementById('roll1').style.display = 'none';
+  let video = <HTMLVideoElement>document.getElementById('video');
+        video.play();
+        document.querySelector('video').addEventListener('ended', ()=> {
+          console.log('Video has ended!');
+          document.getElementById('video').style.display = 'none'
+          document.getElementById('roll').style.display = 'block';
+          document.getElementById('roll1').style.display = 'block';
+          this.api.User.holopoint= this.api.User.holopoint +10;
+          this.coin();
+        }, false);
+}
+
+async coin(){
+  const alert = await this.alertCtrl.create({
+    header:'Congratulation!',
+    message:'You earn 10 Holo coin'
+  })
+  await alert.present();
+}
+
 
   ngOnInit() {}
 

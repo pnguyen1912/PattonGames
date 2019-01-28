@@ -4,9 +4,10 @@
   <div style="text-align:center" id='play'>
     <img src="assets/solo.png" alt="">
 <img src="assets/spades.jpg" alt=""><br>
- <b> <ion-button style="color: green" (click)='play()'>Play</ion-button><br>
+ <b> <ion-button style="color: green" (click)='realplay()'>Play</ion-button><br>
   <ion-button style="color:green" (click)='newplayer()'>How to play</ion-button><br>
 <ion-button style="color: green" (click)='menu()'>Back to Menu</ion-button></b>
+<b><ion-header>Total win: {{this.api.User.spadescore}}</ion-header></b>
 
 </div>
 <div id='instruc' style="display: none;text-align: center;color: white;background-color: black">
@@ -22,6 +23,7 @@
 <ion-button style="background-color:green" (click)="backhome()" >Done</ion-button>
 </div>
   <div id='game' style="display:none">
+    <ion-icon (click)="back()" style="position:absolute; top: 2%; float:left;font-size: 300%" name="return-left"></ion-icon>
 <div style="text-align:center">
   <img  id='img3'style="width: 30%" src="assets/back.png" alt="">
   <p id='score3'>Score: 0</p>
@@ -29,10 +31,10 @@
 <div>
   <img id='img2' style="width: 30%;display: inline-block" src="assets/back.png" alt="">
 
-  <img id='img4' style="width: 30%;display: inline-block;float: right" src="assets/back.png" alt="">
+  <img id='img4' style="width: 30%;float: right" src="assets/back.png" alt="">
 </div>
 <div> <p id='score2'style="display: inline-block">Score: 0</p>
-<p id='score4' style="display: inline-block;float: right;">Score: 0</p></div>
+<p id='score4' style="float: right;">Score: 0</p></div>
 
 <div style="text-align:center">
   <img id='img1' style="width: 30%" src="assets/blank.png" alt="">

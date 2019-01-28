@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { doesNotReject } from 'assert';
 import { Router } from '@angular/router';
+import { RestapiService } from '../restapi.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-constructor(public AlertCtrl:AlertController,public router:Router){}
+constructor(public AlertCtrl:AlertController,public router:Router,public api:RestapiService){}
 
 cards = [
   {num:'14',suit:'H',played: false},{num:'02',suit:'H',played: false},{num:'03',suit:'H',played: false},{num:'04',suit:'H',played: false},{num:'05',suit:'H',played: false},{num:'06',suit:'H',played: false},{num:'07',suit:'H',played: false},{num:'08',suit:'H',played: false},{num:'09',suit:'H',played: false},{num:'10',suit:'H',played: false},{num:'11',suit:'H',played: false},{num:'12',suit:'H',played: false},{num:'13',suit:'H',played: false},
@@ -115,16 +116,28 @@ played3 = false;
 played4 = false;
 
 
-turn1 = false;
-turn2 = false;
-turn3 = false;
-turn4 = false;
 
 gamestarted = false
+trackback = false
 menu(){
+  this.api.postData();
 this.router.navigate(['/main'])
 }
+realplay(){
+  if (this.trackback == false){
+    this.play()
+  } else { 
+    document.getElementById('play').style.display = 'none';
+  document.getElementById('game').style.display = 'block'
+}
+}
+
+
 play(){
+  this.trackback=true;
+  // for (let i=0; i<this.player1.length;i++){
+  //   document.getElementById(`${this.player1[i].num}${this.player1[i].suit}`).style.display = 'none'
+  // }
   document.getElementById('play').style.display = 'none';
   document.getElementById('game').style.display = 'block'
 
@@ -174,7 +187,11 @@ play(){
     
   }
 
+back(){
+  document.getElementById('play').style.display = 'block';
+  document.getElementById('game').style.display = 'none'
 
+}
   async cantplay() {
     const alert = await this.AlertCtrl.create({
       header: 'it has to be same suit'
@@ -191,14 +208,11 @@ play(){
       document.getElementById('play').style.display = 'block'
     } },
     {text:'Yes',
-    handler: () => {this.play()
-    this.round = 1
+    handler: () => {
     // let i=0
-    this.player1 = []
-    this.player2 = []
-    this.player3 = []
-      this.player4 = []
-  },
+this.reset()
+  this.play()
+}
   }]
     })
     await alert.present();
@@ -209,6 +223,42 @@ play(){
       header: 'Cant start with space'
     })
     await alert.present();
+  }
+
+  reset(){
+    this.cards = [
+      {num:'14',suit:'H',played: false},{num:'02',suit:'H',played: false},{num:'03',suit:'H',played: false},{num:'04',suit:'H',played: false},{num:'05',suit:'H',played: false},{num:'06',suit:'H',played: false},{num:'07',suit:'H',played: false},{num:'08',suit:'H',played: false},{num:'09',suit:'H',played: false},{num:'10',suit:'H',played: false},{num:'11',suit:'H',played: false},{num:'12',suit:'H',played: false},{num:'13',suit:'H',played: false},
+      {num:'14',suit:'D',played: false},{num:'02',suit:'D',played: false},{num:'03',suit:'D',played: false},{num:'04',suit:'D',played: false},{num:'05',suit:'D',played: false},{num:'06',suit:'D',played: false},{num:'07',suit:'D',played: false},{num:'08',suit:'D',played: false},{num:'09',suit:'D',played: false},{num:'10',suit:'D',played: false},{num:'11',suit:'D',played: false},{num:'12',suit:'D',played: false},{num:'13',suit:'D',played: false},
+      {num:'14',suit:'S',played: false},{num:'02',suit:'S',played: false},{num:'03',suit:'S',played: false},{num:'04',suit:'S',played: false},{num:'05',suit:'S',played: false},{num:'06',suit:'S',played: false},{num:'07',suit:'S',played: false},{num:'08',suit:'S',played: false},{num:'09',suit:'S',played: false},{num:'10',suit:'S',played: false},{num:'11',suit:'S',played: false},{num:'12',suit:'S',played: false},{num:'13',suit:'S',played: false},
+      {num:'14',suit:'C',played: false},{num:'02',suit:'C',played: false},{num:'03',suit:'C',played: false},{num:'04',suit:'C',played: false},{num:'05',suit:'C',played: false},{num:'06',suit:'C',played: false},{num:'07',suit:'C',played: false},{num:'08',suit:'C',played: false},{num:'09',suit:'C',played: false},{num:'10',suit:'C',played: false},{num:'11',suit:'C',played: false},{num:'12',suit:'C',played: false},{num:'13',suit:'C',played: false},
+    ];
+    console.log(this.cards)
+    this.currentplay = '';
+    this.turn = true;
+    this.round =1;
+    this.currentplay2 ='';
+    this.currentplay3 ='';
+    this.currentplay4 ='';
+    this.player1score =0;
+    this.player2score =0;
+    this.player3score =0;
+    this.player4score =0;
+document.getElementById('score1').innerHTML = `Score :0`
+document.getElementById('score2').innerHTML = `Score :0`
+document.getElementById('score3').innerHTML = `Score :0`
+document.getElementById('score4').innerHTML = `Score :0`
+this.played1 = false;
+this.played2 = false;
+this.played3 = false;
+this.played4 = false;
+
+      
+
+this.gamestarted = false;
+    this.player1 = [];
+    this.player2 = [];
+    this.player3 = [];
+      this.player4 = [];
   }
   async notturn() {
     const alert = await this.AlertCtrl.create({
@@ -283,6 +333,7 @@ setTimeout(() => {
   if (this.round == 14){
     if (this.player1score > this.player2score && this.player1score > this.player2score && this.player1score > this.player4score){
       this.annwinner('Player 1');
+      this.api.User.spadescore++;
     }
     if (this.player2score > this.player1score && this.player2score > this.player3score && this.player2score > this.player4score){
       this.annwinner('Player 2');
@@ -293,6 +344,10 @@ setTimeout(() => {
     if (this.player4score > this.player1score && this.player4score > this.player2score && this.player4score > this.player3score){
       this.annwinner('Player 4');
     }
+    if (this.player1score == this.player2score || this.player1score == this.player3score || this.player1score == this.player4score ||
+      this.player2score == this.player3score || this.player2score == this.player4score || this.player3score == this.player4score){
+        this.annwinner('No One');
+      }
   }
 }, 3001);
     }} else {this.notturn()}

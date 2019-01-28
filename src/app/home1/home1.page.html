@@ -4,7 +4,9 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content padding>
+<ion-content>
+    <video style="display:none" id='video' src="assets/intro1.MOV"  height="820px"></video> 
+
     <div style="text-align:center" id='play'>
   
     <ion-button style="color: red" (click)='menu()'>Back to Menu</ion-button>
@@ -17,12 +19,13 @@
 <img (click)='deer1()' id='deer' style="float: right;height: 21%;"src="assets/icon/deer.png" alt="">
 <img (click)='chicken1()' id='chicken' style="float: left;height: 21%;"src="assets/icon/chicken.png" alt="">
 
-<h1 style="position: absolute;bottom: 4%; text-align:center">Your coin:{{this.coin}}</h1>
+<h1 id='roll1' style="position: absolute;bottom: 4%; text-align:center">Your coin:{{this.api.User.holopoint}}</h1>
 
-<ion-button style="color: red;position:absolute;bottom: 10%" (click)='roll()'>ROLL</ion-button>
+<ion-button id='roll' style="color: red;position:absolute;bottom: 10%" (click)='roll()'>ROLL</ion-button>
 
 <img style="height: 14.5%;" id='result' src="assets/icon/blank.png" alt="">
 <img style="height: 14.5%;" id='result1' src="assets/icon/blank.png" alt="">
 <img style="height: 14.5%;" id='result2' src="assets/icon/blank.png" alt="">
 <ion-icon (click)='newplayer()' style="font-size: 500%;float:right" name="help"></ion-icon>
+<ion-button style='float:right;color:red' (click)='tutor()'>More Coin</ion-button>
 </ion-content>

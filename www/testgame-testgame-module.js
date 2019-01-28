@@ -10434,7 +10434,7 @@ var TestgamePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>testgame</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n<div>\n  <canvas #mycanvas></canvas>\n</div>\n</ion-content>\n"
+module.exports = "\n\n<ion-content>\n<div>\n  <canvas #mycanvas></canvas>\n</div>\n<div style=\"text-align:center\"><ion-button (click)='menu()'>Back to Menu</ion-button></div>\n</ion-content>\n"
 
 /***/ }),
 
@@ -10445,7 +10445,7 @@ module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>testgame</ion-ti
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Rlc3RnYW1lL3Rlc3RnYW1lLnBhZ2Uuc2NzcyJ9 */"
+module.exports = "ion-content {\n  --background: black\n; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9wbmd1eWVuL0lvbmljQXBwL3NwYWNlQXBwL3NyYy9hcHAvdGVzdGdhbWUvdGVzdGdhbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0k7Q0FBYSxFQUNoQiIsImZpbGUiOiJzcmMvYXBwL3Rlc3RnYW1lL3Rlc3RnYW1lLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50e1xuICAgIC0tYmFja2dyb3VuZDogYmxhY2tcbn0iXX0= */"
 
 /***/ }),
 
@@ -10462,6 +10462,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! matter-js */ "./node_modules/matter-js/build/matter.js");
 /* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _restapi_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../restapi.service */ "./src/app/restapi.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10473,12 +10475,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var TestgamePage = /** @class */ (function () {
-    function TestgamePage() {
+    function TestgamePage(router, api) {
+        this.router = router;
+        this.api = api;
     }
     TestgamePage.prototype.ngOnInit = function () {
         this.canvasEl.nativeElement.width = document.body.clientWidth;
-        this.canvasEl.nativeElement.height = document.body.clientHeight;
+        this.canvasEl.nativeElement.height = document.body.clientHeight - 50;
+        console.log(this.canvasEl.nativeElement.width);
+        console.log(this.canvasEl.nativeElement.height);
         var engine = matter_js__WEBPACK_IMPORTED_MODULE_1__["Engine"].create();
         var world = engine.world;
         var render = matter_js__WEBPACK_IMPORTED_MODULE_1__["Render"].create({
@@ -10487,26 +10495,132 @@ var TestgamePage = /** @class */ (function () {
             options: {
                 width: this.canvasEl.nativeElement.width,
                 height: this.canvasEl.nativeElement.height,
-                background: 'red',
+                background: 'transparent',
                 wireframe: false,
                 showAngleIndicator: false,
             }
         });
-        var ball = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].circle(100, 100, 40, {
-            density: 0.04,
-            friction: 0.01,
-            id: 1,
-            render: {
-                visible: true,
-                fillStyle: 'red',
-                strokeStyle: 'black',
-                lineWidth: 1
-            }
+        // var ball = Matter.Bodies.circle(100, 20, 10, {
+        //   density: 0.04,
+        //   friction: 0,
+        //   frictionAir: -0.005,
+        //   restitution: 0.8,
+        //   render: {
+        //     fillStyle: '#F35e66',
+        //     strokeStyle: 'black',
+        //     lineWidth: 1
+        //   }
+        // });
+        // Matter.World.add(world, ball);
+        // var mouseConstraint = Matter.MouseConstraint.create(engine, { //Create Constraint
+        //   element: this.canvasEl,
+        //   constraint: {
+        //     render: {
+        //       visible: false
+        //     },
+        //     stiffness:0.8
+        //   }
+        // });
+        // Matter.World.add(world, mouseConstraint);
+        var rectangle = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(200, 100, 120, 80, {
+            restitution: 0.25,
+            angle: Math.PI / 4
         });
-        // var bar = Matter.Bodies.rectangle(395, 600, 815, 50, { isStatic: true })
-        matter_js__WEBPACK_IMPORTED_MODULE_1__["World"].add(world, ball);
+        var floor = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(0, this.canvasEl.nativeElement.height - 20, this.canvasEl.nativeElement.width * 2, 50, {
+            isStatic: true
+        });
+        var floor1 = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(0, 0, this.canvasEl.nativeElement.width * 2, 30, {
+            isStatic: true
+        });
+        var floor12 = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(0, this.canvasEl.nativeElement.height - 425, this.canvasEl.nativeElement.width * 2, 50, {
+            isStatic: true
+        });
+        var floor13 = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(0, this.canvasEl.nativeElement.height - 225, this.canvasEl.nativeElement.width * 2, 50, {
+            isStatic: true
+        });
+        var floor2 = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(0, 0, 50, this.canvasEl.nativeElement.height * 2, {
+            isStatic: true
+        });
+        var floor3 = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(this.canvasEl.nativeElement.width, 0, 50, this.canvasEl.nativeElement.height * 2, {
+            isStatic: true
+        });
+        var bar1 = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(this.canvasEl.nativeElement.width / 4, this.canvasEl.nativeElement.height, 10, 200, {
+            isStatic: true
+        });
+        var bar2 = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(this.canvasEl.nativeElement.width / 2, this.canvasEl.nativeElement.height, 10, 200, {
+            isStatic: true
+        });
+        var bar3 = matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(this.canvasEl.nativeElement.width / 4 * 3, this.canvasEl.nativeElement.height, 10, 200, {
+            isStatic: true
+        });
+        // const bar4 = Matter.Bodies.rectangle(this.canvasEl.nativeElement.width/4,this.canvasEl.nativeElement.height-100,30,200,{isStatic:true})
+        // Matter.MouseConstraint.create({
+        // })
+        matter_js__WEBPACK_IMPORTED_MODULE_1__["World"].add(world, [floor, floor1, floor12, floor13, floor2, floor3]);
         matter_js__WEBPACK_IMPORTED_MODULE_1__["Engine"].run(engine);
         matter_js__WEBPACK_IMPORTED_MODULE_1__["Render"].run(render);
+        var randomInRange = function (min, max) { return Math.random() * (max - min) + min; };
+        var randomIntInRange = function (min, max) { return Math.floor(Math.random() * (max - min + 1) + min); };
+        // document.querySelector("canvas").addEventListener("mousedown", () => {
+        //   for (let i = 0; i < 1; i++) {
+        //     const x = randomInRange(20, this.canvasEl.nativeElement.width);
+        //     const y = randomInRange(50, 80);
+        //     const radius = randomInRange(25, 50);
+        //     const sides = randomIntInRange(3, 6);
+        //     const body = Matter.Bodies.circle(x, y, 10, {
+        //       friction: 20,
+        //       restitution: 1,
+        //     });
+        //     Matter.World.add(world, body);
+        //   }
+        // });
+        var stack = matter_js__WEBPACK_IMPORTED_MODULE_1__["Composites"].stack(30, 50, 1, 6, 0, 0, function (x, y) {
+            return matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(x, y, 50 * 2, 50, {
+                slop: 0.5,
+                friction: 1,
+                frictionStatic: Infinity,
+            });
+        });
+        matter_js__WEBPACK_IMPORTED_MODULE_1__["World"].add(world, [
+            matter_js__WEBPACK_IMPORTED_MODULE_1__["Body"],
+            stack,
+        ]);
+        var stack = matter_js__WEBPACK_IMPORTED_MODULE_1__["Composites"].stack(130, 50, 1, 6, 0, 0, function (x, y) {
+            return matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(x, y, 50 * 2, 50, {
+                slop: 0.5,
+                friction: 1,
+                frictionStatic: Infinity
+            });
+        });
+        matter_js__WEBPACK_IMPORTED_MODULE_1__["World"].add(world, [
+            matter_js__WEBPACK_IMPORTED_MODULE_1__["Body"],
+            stack,
+        ]);
+        var stack = matter_js__WEBPACK_IMPORTED_MODULE_1__["Composites"].stack(230, 50, 1, 6, 0, 0, function (x, y) {
+            return matter_js__WEBPACK_IMPORTED_MODULE_1__["Bodies"].rectangle(x, y, 50 * 2, 50, {
+                slop: 0.5,
+                friction: 1,
+                frictionStatic: Infinity
+            });
+        });
+        matter_js__WEBPACK_IMPORTED_MODULE_1__["World"].add(world, [
+            matter_js__WEBPACK_IMPORTED_MODULE_1__["Body"],
+            stack,
+        ]);
+        var mouse = matter_js__WEBPACK_IMPORTED_MODULE_1__["Mouse"].create(render.canvas), mouseConstraint = matter_js__WEBPACK_IMPORTED_MODULE_1__["MouseConstraint"].create(engine, {
+            mouse: mouse,
+            constraint: {
+                stiffness: 0.2,
+                render: {
+                    visible: false
+                }
+            }
+        });
+        matter_js__WEBPACK_IMPORTED_MODULE_1__["World"].add(world, mouseConstraint);
+    };
+    TestgamePage.prototype.menu = function () {
+        // this.api.postData();
+        this.router.navigate(['/main']);
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('mycanvas'),
@@ -10518,7 +10632,7 @@ var TestgamePage = /** @class */ (function () {
             template: __webpack_require__(/*! ./testgame.page.html */ "./src/app/testgame/testgame.page.html"),
             styles: [__webpack_require__(/*! ./testgame.page.scss */ "./src/app/testgame/testgame.page.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _restapi_service__WEBPACK_IMPORTED_MODULE_3__["RestapiService"]])
     ], TestgamePage);
     return TestgamePage;
 }());
