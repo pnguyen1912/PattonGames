@@ -5,7 +5,8 @@
 </ion-header> -->
 
 <ion-content>
-    <video style="display:none" id='video' src="assets/intro1.MOV"  height="820px"></video> 
+
+    <video style="display:none;float:right" id='video' src="assets/30svid.mov"  height="812px"></video> 
 
     <div style="text-align:center" id='play'>
   
@@ -27,5 +28,5 @@
 <img style="height: 14.5%;" id='result1' src="assets/icon/blank.png" alt="">
 <img style="height: 14.5%;" id='result2' src="assets/icon/blank.png" alt="">
 <ion-icon (click)='newplayer()' style="font-size: 500%;float:right" name="help"></ion-icon>
-<ion-button style='float:right;color:red' (click)='tutor()'>More Coin</ion-button>
+<ion-button id='coin' style='float:right;color:red' (click)='tutor()'>More Coin</ion-button>
 </ion-content>

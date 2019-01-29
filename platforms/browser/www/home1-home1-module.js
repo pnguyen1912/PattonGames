@@ -62,7 +62,7 @@ var Home1PageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ion-header>\n  <ion-toolbar>\n    <ion-title>home1</ion-title>\n  </ion-toolbar>\n</ion-header> -->\n\n<ion-content>\n    <video style=\"display:none\" id='video' src=\"assets/intro1.MOV\"  height=\"820px\"></video> \n\n    <div style=\"text-align:center\" id='play'>\n  \n    <ion-button style=\"color: red\" (click)='menu()'>Back to Menu</ion-button>\n    </div>\n   \n<img (click)='fish1()' id='fish' style=\"float: right;height: 21%;\" src=\"assets/icon/fish.png\" alt=\"\">\n<img (click)='holo1()' id='holo'style=\"float: left;height: 21%;\"src=\"assets/icon/holo.png\" alt=\"\">\n<img (click)='shrimp1()' id='shrimp' style=\"float: right;height: 21%;\"src=\"assets/icon/shrimp.png\" alt=\"\">\n<img (click)='crab1()' id='crab' style=\"float: left;height: 21%;\"src=\"assets/icon/crab.png\" alt=\"\">\n<img (click)='deer1()' id='deer' style=\"float: right;height: 21%;\"src=\"assets/icon/deer.png\" alt=\"\">\n<img (click)='chicken1()' id='chicken' style=\"float: left;height: 21%;\"src=\"assets/icon/chicken.png\" alt=\"\">\n\n<h1 id='roll1' style=\"position: absolute;bottom: 4%; text-align:center\">Your coin:{{this.api.User.holopoint}}</h1>\n\n<ion-button id='roll' style=\"color: red;position:absolute;bottom: 10%\" (click)='roll()'>ROLL</ion-button>\n\n<img style=\"height: 14.5%;\" id='result' src=\"assets/icon/blank.png\" alt=\"\">\n<img style=\"height: 14.5%;\" id='result1' src=\"assets/icon/blank.png\" alt=\"\">\n<img style=\"height: 14.5%;\" id='result2' src=\"assets/icon/blank.png\" alt=\"\">\n<ion-icon (click)='newplayer()' style=\"font-size: 500%;float:right\" name=\"help\"></ion-icon>\n<ion-button style='float:right;color:red' (click)='tutor()'>More Coin</ion-button>\n</ion-content>\n"
+module.exports = "<!-- <ion-header>\n  <ion-toolbar>\n    <ion-title>home1</ion-title>\n  </ion-toolbar>\n</ion-header> -->\n\n<ion-content>\n\n    <video style=\"display:none;float:right\" id='video' src=\"assets/30svid.mov\"  height=\"812px\"></video> \n\n    <div style=\"text-align:center\" id='play'>\n  \n    <ion-button style=\"color: red\" (click)='menu()'>Back to Menu</ion-button>\n    </div>\n   \n<img (click)='fish1()' id='fish' style=\"float: right;height: 21%;\" src=\"assets/icon/fish.png\" alt=\"\">\n<img (click)='holo1()' id='holo'style=\"float: left;height: 21%;\"src=\"assets/icon/holo.png\" alt=\"\">\n<img (click)='shrimp1()' id='shrimp' style=\"float: right;height: 21%;\"src=\"assets/icon/shrimp.png\" alt=\"\">\n<img (click)='crab1()' id='crab' style=\"float: left;height: 21%;\"src=\"assets/icon/crab.png\" alt=\"\">\n<img (click)='deer1()' id='deer' style=\"float: right;height: 21%;\"src=\"assets/icon/deer.png\" alt=\"\">\n<img (click)='chicken1()' id='chicken' style=\"float: left;height: 21%;\"src=\"assets/icon/chicken.png\" alt=\"\">\n\n<h1 id='roll1' style=\"position: absolute;bottom: 4%; text-align:center\">Your coin:{{this.api.User.holopoint}}</h1>\n\n<ion-button id='roll' style=\"color: red;position:absolute;bottom: 10%\" (click)='roll()'>ROLL</ion-button>\n\n<img style=\"height: 14.5%;\" id='result' src=\"assets/icon/blank.png\" alt=\"\">\n<img style=\"height: 14.5%;\" id='result1' src=\"assets/icon/blank.png\" alt=\"\">\n<img style=\"height: 14.5%;\" id='result2' src=\"assets/icon/blank.png\" alt=\"\">\n<ion-icon (click)='newplayer()' style=\"font-size: 500%;float:right\" name=\"help\"></ion-icon>\n<ion-button id='coin' style='float:right;color:red' (click)='tutor()'>More Coin</ion-button>\n</ion-content>\n"
 
 /***/ }),
 
@@ -420,6 +420,7 @@ var Home1Page = /** @class */ (function () {
         document.getElementById('video').style.display = 'block';
         document.getElementById('roll').style.display = 'none';
         document.getElementById('roll1').style.display = 'none';
+        document.getElementById('coin').style.display = 'none';
         var video = document.getElementById('video');
         video.play();
         document.querySelector('video').addEventListener('ended', function () {
@@ -427,6 +428,7 @@ var Home1Page = /** @class */ (function () {
             document.getElementById('video').style.display = 'none';
             document.getElementById('roll').style.display = 'block';
             document.getElementById('roll1').style.display = 'block';
+            document.getElementById('coin').style.display = 'block';
             _this.api.User.holopoint = _this.api.User.holopoint + 10;
             _this.coin();
         }, false);

@@ -286,6 +286,7 @@ tutor(){
   document.getElementById('video').style.display = 'block';
   document.getElementById('roll').style.display = 'none';
   document.getElementById('roll1').style.display = 'none';
+  document.getElementById('coin').style.display = 'none';
   let video = <HTMLVideoElement>document.getElementById('video');
         video.play();
         document.querySelector('video').addEventListener('ended', ()=> {
@@ -293,6 +294,7 @@ tutor(){
           document.getElementById('video').style.display = 'none'
           document.getElementById('roll').style.display = 'block';
           document.getElementById('roll1').style.display = 'block';
+          document.getElementById('coin').style.display = 'block';
           this.api.User.holopoint= this.api.User.holopoint +10;
           this.coin();
         }, false);
