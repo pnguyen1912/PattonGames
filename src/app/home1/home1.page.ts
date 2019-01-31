@@ -33,46 +33,54 @@ winning:boolean = false;
   //   let fish = document.getElementById('fish')
   // }
 
-  betting() {
-    if (this.api.User.holopoint > 0) {
-      this.api.User.holopoint = this.api.User.holopoint - 1;
-    } else {
-      console.log('no money')
-    }
-  }
+async betting (){
+  const alert = await this.alertCtrl.create({
+    header:'No money'
+  })
+  await alert.present();
+}
+
   menu(){
     this.api.postData();
     this.router.navigate(['/main'])
     }
   fish1() {
-    this.betting()
+    if (this.api.User.holopoint >0){
+      this.api.User.holopoint--;
     this.betfish++;
-    console.log(`fish ${this.betfish}`)
+    console.log(`fish ${this.betfish}`)}
+    else {this.betting()}
   }
   chicken1() {
-    this.betting()
+    if (this.api.User.holopoint >0){
+      this.api.User.holopoint--;
     this.betchicken++;
-    console.log(`chicken ${this.betchicken}`)
-  }
-  crab1() {
-    this.betting()
-    this.betcrab++;
-    console.log(`crab ${this.betcrab}`)
-  }
-  shrimp1() {
-    this.betting()
+    console.log(`chicken ${this.betchicken}`)}
+    else {this.betting()}
+  }shrimp1() {
+    if (this.api.User.holopoint >0){
+      this.api.User.holopoint--;
     this.betshrimp++;
-    console.log(`shrimp ${this.betshrimp}`)
-  }
-  holo1() {
-    this.betting()
-    this.betholo++;
-    console.log(`holo ${this.betholo}`)
-  }
-  deer1() {
-    this.betting()
+    console.log(`shrimp ${this.betshrimp}`)}
+    else {this.betting()}
+  }crab1() {
+    if (this.api.User.holopoint >0){
+      this.api.User.holopoint--;
+    this.betcrab++;
+    console.log(`crab ${this.betcrab}`)}
+    else {this.betting()}
+  }deer1() {
+    if (this.api.User.holopoint >0){
+      this.api.User.holopoint--;
     this.betdeer++;
-    console.log(`deer ${this.betdeer}`)
+    console.log(`deer ${this.betdeer}`)}
+    else {this.betting()}
+  }holo1() {
+    if (this.api.User.holopoint >0){
+      this.api.User.holopoint--;
+    this.betholo++;
+    console.log(`holo ${this.betholo}`)}
+    else {this.betting()}
   }
   roll() {
     if (this.rolled == false){

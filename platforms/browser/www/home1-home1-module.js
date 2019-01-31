@@ -162,46 +162,86 @@ var Home1Page = /** @class */ (function () {
     //   let fish = document.getElementById('fish')
     // }
     Home1Page.prototype.betting = function () {
-        if (this.api.User.holopoint > 0) {
-            this.api.User.holopoint = this.api.User.holopoint - 1;
-        }
-        else {
-            console.log('no money');
-        }
+        return __awaiter(this, void 0, void 0, function () {
+            var alert;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertCtrl.create({
+                            header: 'No money'
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     Home1Page.prototype.menu = function () {
         this.api.postData();
         this.router.navigate(['/main']);
     };
     Home1Page.prototype.fish1 = function () {
-        this.betting();
-        this.betfish++;
-        console.log("fish " + this.betfish);
+        if (this.api.User.holopoint > 0) {
+            this.api.User.holopoint--;
+            this.betfish++;
+            console.log("fish " + this.betfish);
+        }
+        else {
+            this.betting();
+        }
     };
     Home1Page.prototype.chicken1 = function () {
-        this.betting();
-        this.betchicken++;
-        console.log("chicken " + this.betchicken);
-    };
-    Home1Page.prototype.crab1 = function () {
-        this.betting();
-        this.betcrab++;
-        console.log("crab " + this.betcrab);
+        if (this.api.User.holopoint > 0) {
+            this.api.User.holopoint--;
+            this.betchicken++;
+            console.log("chicken " + this.betchicken);
+        }
+        else {
+            this.betting();
+        }
     };
     Home1Page.prototype.shrimp1 = function () {
-        this.betting();
-        this.betshrimp++;
-        console.log("shrimp " + this.betshrimp);
+        if (this.api.User.holopoint > 0) {
+            this.api.User.holopoint--;
+            this.betshrimp++;
+            console.log("shrimp " + this.betshrimp);
+        }
+        else {
+            this.betting();
+        }
     };
-    Home1Page.prototype.holo1 = function () {
-        this.betting();
-        this.betholo++;
-        console.log("holo " + this.betholo);
+    Home1Page.prototype.crab1 = function () {
+        if (this.api.User.holopoint > 0) {
+            this.api.User.holopoint--;
+            this.betcrab++;
+            console.log("crab " + this.betcrab);
+        }
+        else {
+            this.betting();
+        }
     };
     Home1Page.prototype.deer1 = function () {
-        this.betting();
-        this.betdeer++;
-        console.log("deer " + this.betdeer);
+        if (this.api.User.holopoint > 0) {
+            this.api.User.holopoint--;
+            this.betdeer++;
+            console.log("deer " + this.betdeer);
+        }
+        else {
+            this.betting();
+        }
+    };
+    Home1Page.prototype.holo1 = function () {
+        if (this.api.User.holopoint > 0) {
+            this.api.User.holopoint--;
+            this.betholo++;
+            console.log("holo " + this.betholo);
+        }
+        else {
+            this.betting();
+        }
     };
     Home1Page.prototype.roll = function () {
         var _this = this;
